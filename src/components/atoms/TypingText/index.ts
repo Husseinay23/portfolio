@@ -1,0 +1,2 @@
+export { TypingText } from './TypingText';
+

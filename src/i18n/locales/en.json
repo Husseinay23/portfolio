@@ -1,0 +1,87 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "experience": "Experience",
+    "projects": "Projects",
+    "contact": "Contact",
+    "downloadCV": "Download CV"
+  },
+  "home": {
+    "greeting": "Hello, I am",
+    "name": "Hussein Ayoub",
+    "title": "Full-Stack Developer & Creative Problem Solver",
+    "cta": "Get in Touch"
+  },
+  "about": {
+    "title": "About Me",
+    "subtitle": "Full-Stack Developer & Creative Problem Solver",
+    "description": "I'm a passionate full-stack developer with expertise in building modern, scalable web applications. I love turning complex problems into simple, beautiful, and intuitive solutions.",
+    "skills": "Skills & Expertise",
+    "experience": "Experience",
+    "education": "Education",
+    "passion": "My Passion",
+    "passionText": "I'm driven by the desire to create exceptional digital experiences. Whether it's crafting pixel-perfect UIs or architecting robust backend systems, I bring creativity and technical excellence to every project."
+  },
+  "experience": {
+    "title": "Experience",
+    "current": "Current",
+    "harmonically": {
+      "title": "Full-Stack Developer",
+      "company": "Harmonically Labs",
+      "period": "2024 - Present",
+      "description": "Developing and maintaining web applications, working with modern technologies to deliver high-quality digital solutions for enterprise clients."
+    }
+  },
+  "projects": {
+    "title": "Projects",
+    "subtitle": "Automatically fetched from GitHub",
+    "viewCode": "View Code",
+    "viewLive": "Live Demo",
+    "noDescription": "No description provided",
+    "loading": "Loading projects...",
+    "error": "Failed to load projects",
+    "filters": {
+      "all": "All",
+      "react": "React",
+      "typescript": "TypeScript",
+      "fullstack": "Fullstack",
+      "uiux": "UI/UX",
+      "systems": "Systems"
+    }
+  },
+  "contact": {
+    "title": "Get In Touch",
+    "subtitle": "Let's work together on your next project",
+    "description": "I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.",
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "subject": "Subject",
+      "message": "Message",
+      "send": "Send Message",
+      "sending": "Sending...",
+      "success": "Message sent successfully!",
+      "error": "Failed to send message. Please try again."
+    },
+    "info": {
+      "title": "Contact Information",
+      "verifyPrompt": "Verify you're human to view contact information",
+      "verifying": "Verifying...",
+      "verified": "Verification successful!",
+      "error": "Verification failed. Please try again."
+    },
+    "social": {
+      "title": "Connect with me",
+      "github": "GitHub",
+      "linkedin": "LinkedIn",
+      "whatsapp": "WhatsApp",
+      "instagram": "Instagram"
+    }
+  },
+  "theme": {
+    "light": "Light Mode",
+    "dark": "Dark Mode"
+  }
+}
+

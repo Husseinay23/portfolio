@@ -1,0 +1,87 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "about": "À propos",
+    "experience": "Expérience",
+    "projects": "Projets",
+    "contact": "Contact",
+    "downloadCV": "Télécharger le CV"
+  },
+  "home": {
+    "greeting": "Bonjour, je suis",
+    "name": "Hussein Ayoub",
+    "title": "Développeur Full-Stack & Résolveur de Problèmes Créatif",
+    "cta": "Contactez-moi"
+  },
+  "about": {
+    "title": "À propos de moi",
+    "subtitle": "Développeur Full-Stack & Résolveur de Problèmes Créatif",
+    "description": "Je suis un développeur full-stack passionné avec une expertise dans la création d'applications web modernes et évolutives. J'aime transformer des problèmes complexes en solutions simples, belles et intuitives.",
+    "skills": "Compétences et Expertise",
+    "experience": "Expérience",
+    "education": "Formation",
+    "passion": "Ma Passion",
+    "passionText": "Je suis motivé par le désir de créer des expériences numériques exceptionnelles. Que ce soit pour créer des interfaces pixel-perfect ou pour concevoir des systèmes backend robustes, j'apporte créativité et excellence technique à chaque projet."
+  },
+  "projects": {
+    "title": "Projets",
+    "subtitle": "Récupérés automatiquement depuis GitHub",
+    "viewCode": "Voir le code",
+    "viewLive": "Démo en direct",
+    "noDescription": "Aucune description fournie",
+    "loading": "Chargement des projets...",
+    "error": "Échec du chargement des projets",
+    "filters": {
+      "all": "Tous",
+      "react": "React",
+      "typescript": "TypeScript",
+      "fullstack": "Fullstack",
+      "uiux": "UI/UX",
+      "systems": "Systèmes"
+    }
+  },
+  "contact": {
+    "title": "Contactez-moi",
+    "subtitle": "Travaillons ensemble sur votre prochain projet",
+    "description": "Je suis toujours ouvert à discuter de nouveaux projets, d'idées créatives ou d'opportunités pour faire partie de vos visions.",
+    "form": {
+      "name": "Nom",
+      "email": "Email",
+      "subject": "Sujet",
+      "message": "Message",
+      "send": "Envoyer le message",
+      "sending": "Envoi en cours...",
+      "success": "Message envoyé avec succès !",
+      "error": "Échec de l'envoi du message. Veuillez réessayer."
+    },
+    "info": {
+      "title": "Informations de contact",
+      "verifyPrompt": "Vérifiez que vous êtes humain pour voir les informations de contact",
+      "verifying": "Vérification en cours...",
+      "verified": "Vérification réussie !",
+      "error": "La vérification a échoué. Veuillez réessayer."
+    },
+    "social": {
+      "title": "Connectez-vous avec moi",
+      "github": "GitHub",
+      "linkedin": "LinkedIn",
+      "whatsapp": "WhatsApp",
+      "instagram": "Instagram"
+    }
+  },
+  "experience": {
+    "title": "Expérience",
+    "current": "Actuel",
+    "harmonically": {
+      "title": "Développeur Full-Stack",
+      "company": "Harmonically Labs",
+      "period": "2024 - Présent",
+      "description": "Développement et maintenance d'applications web, travail avec des technologies modernes pour fournir des solutions numériques de haute qualité pour les clients d'entreprise."
+    }
+  },
+  "theme": {
+    "light": "Mode clair",
+    "dark": "Mode sombre"
+  }
+}
+
