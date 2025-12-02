@@ -1,8 +1,6 @@
-import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "../../contexts/ThemeContext";
-import { Turnstile } from "../../components/molecules/Turnstile";
 
 export const Contact = () => {
   const { t, i18n } = useTranslation();
@@ -10,90 +8,7 @@ export const Contact = () => {
   const isDark = theme === "dark";
   const isRTL = i18n.language === "ar";
 
-  // Cloudflare Turnstile site key from environment
-  const turnstileSiteKey =
-    import.meta.env.VITE_CLOUDFLARE_TURNSTILE_SITE_KEY || "";
-
-  // WhatsApp verification state
-  const [isWhatsAppVerified, setIsWhatsAppVerified] = useState(false);
-  const [verificationStatus, setVerificationStatus] = useState<
-    "idle" | "verifying" | "verified" | "error"
-  >("idle");
-  const [errorMessage, setErrorMessage] = useState<string>("");
-
-  // Debug: Log site key status (remove in production if needed)
-  useEffect(() => {
-    if (!turnstileSiteKey) {
-      console.warn(
-        "Turnstile site key not found. Please set VITE_CLOUDFLARE_TURNSTILE_SITE_KEY"
-      );
-    }
-  }, [turnstileSiteKey]);
-
   const whatsappUrl = "https://wa.me/96178904118";
-
-  const handleTurnstileVerify = async (token: string) => {
-    setVerificationStatus("verifying");
-    setErrorMessage("");
-
-    try {
-      // For static sites, we trust the client-side verification
-      // The token itself proves the user is human
-      if (!token) {
-        throw new Error("No token received from Turnstile");
-      }
-
-      // Small delay for UX
-      await new Promise((resolve) => setTimeout(resolve, 300));
-
-      setIsWhatsAppVerified(true);
-      setVerificationStatus("verified");
-
-      // Store verification in sessionStorage
-      sessionStorage.setItem("whatsapp_verified", "true");
-      sessionStorage.setItem("whatsapp_token", token);
-
-      console.log("WhatsApp verification successful");
-    } catch (error) {
-      console.error("Turnstile verification error:", error);
-      setVerificationStatus("error");
-      setErrorMessage(
-        error instanceof Error ? error.message : "Verification failed"
-      );
-      setIsWhatsAppVerified(false);
-    }
-  };
-
-  const handleTurnstileError = () => {
-    setVerificationStatus("error");
-    setErrorMessage(
-      "Failed to load verification. Please refresh the page and try again."
-    );
-    setIsWhatsAppVerified(false);
-    console.error("Turnstile error occurred");
-  };
-
-  const handleTurnstileExpire = () => {
-    setVerificationStatus("idle");
-    setIsWhatsAppVerified(false);
-    sessionStorage.removeItem("whatsapp_verified");
-    sessionStorage.removeItem("whatsapp_token");
-  };
-
-  const handleWhatsAppClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (!isWhatsAppVerified) {
-      e.preventDefault();
-    }
-  };
-
-  // Check if already verified in this session
-  useEffect(() => {
-    const wasVerified = sessionStorage.getItem("whatsapp_verified");
-    if (wasVerified === "true") {
-      setIsWhatsAppVerified(true);
-      setVerificationStatus("verified");
-    }
-  }, []);
 
   const socialLinks = [
     {
@@ -105,7 +20,6 @@ export const Contact = () => {
       ),
       url: "https://github.com/Husseinay23",
       color: isDark ? "hover:text-white" : "hover:text-gray-900",
-      protected: false,
     },
     {
       name: "LinkedIn",
@@ -116,7 +30,6 @@ export const Contact = () => {
       ),
       url: "https://www.linkedin.com/in/hussein-ayoub-b4baa1317/",
       color: isDark ? "hover:text-[#0077b5]" : "hover:text-[#0077b5]",
-      protected: false,
     },
     {
       name: "WhatsApp",
@@ -127,7 +40,6 @@ export const Contact = () => {
       ),
       url: whatsappUrl,
       color: isDark ? "hover:text-[#25D366]" : "hover:text-[#25D366]",
-      protected: true,
     },
     {
       name: "Instagram",
@@ -138,7 +50,6 @@ export const Contact = () => {
       ),
       url: "https://www.instagram.com/husseinay23?igsh=am9mYW1jYnVpN3Fh&utm_source=qr",
       color: isDark ? "hover:text-[#E4405F]" : "hover:text-[#E4405F]",
-      protected: false,
     },
   ];
 
@@ -197,115 +108,27 @@ export const Contact = () => {
           </h3>
           <div className="space-y-4">
             {socialLinks.map((social) => (
-              <div key={social.name}>
-                {social.protected && !isWhatsAppVerified ? (
-                  <div
-                    className={`
-                      p-6 rounded-lg border
-                      ${
-                        isDark
-                          ? "bg-[#16181C] border-white/10 text-gray-400"
-                          : "bg-gray-50 border-gray-200 text-gray-600"
-                      }
-                    `}
-                  >
-                    <div className="flex items-center gap-4 mb-4">
-                      {social.icon}
-                      <span className="font-medium">
-                        {t(`contact.social.${social.name.toLowerCase()}`)}
-                      </span>
-                    </div>
-                    <p className="mb-4 text-sm text-center">
-                      {t("contact.info.verifyPrompt")}
-                    </p>
-
-                    {turnstileSiteKey ? (
-                      <div className="flex flex-col items-center gap-4">
-                        <Turnstile
-                          siteKey={turnstileSiteKey}
-                          onVerify={handleTurnstileVerify}
-                          onError={handleTurnstileError}
-                          onExpire={handleTurnstileExpire}
-                        />
-                        {verificationStatus === "verifying" && (
-                          <p className="text-sm">
-                            {t("contact.info.verifying")}
-                          </p>
-                        )}
-                        {verificationStatus === "error" && (
-                          <div className="text-center">
-                            <p
-                              className={`text-sm ${
-                                isDark ? "text-red-400" : "text-red-600"
-                              }`}
-                            >
-                              {errorMessage || t("contact.info.error")}
-                            </p>
-                            <button
-                              onClick={() => {
-                                setVerificationStatus("idle");
-                                setErrorMessage("");
-                                setIsWhatsAppVerified(false);
-                                window.location.reload();
-                              }}
-                              className={`mt-2 text-xs underline ${
-                                isDark ? "text-red-300" : "text-red-500"
-                              }`}
-                            >
-                              Try Again
-                            </button>
-                          </div>
-                        )}
-                      </div>
-                    ) : (
-                      <div
-                        className={`
-                          text-sm text-center p-4 rounded
-                          ${
-                            isDark
-                              ? "bg-red-500/10 text-red-400 border border-red-500/30"
-                              : "bg-red-50 text-red-600 border border-red-200"
-                          }
-                        `}
-                      >
-                        <p className="mb-2">
-                          Turnstile site key not configured.
-                        </p>
-                        <p className="text-xs">
-                          Please set VITE_CLOUDFLARE_TURNSTILE_SITE_KEY in your
-                          environment variables or .env file.
-                        </p>
-                        <p className="text-xs mt-2 opacity-75">
-                          For GitHub Pages: Add it as a repository secret and
-                          set it in your build workflow.
-                        </p>
-                      </div>
-                    )}
-                  </div>
-                ) : (
-                  <motion.a
-                    href={social.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={social.protected ? handleWhatsAppClick : undefined}
-                    whileHover={{ x: isRTL ? -10 : 10, scale: 1.05 }}
-                    className={`
-                      flex items-center gap-4 p-4 rounded-lg border transition-all
-                      ${
-                        isDark
-                          ? "bg-[#16181C] border-white/10 text-gray-400 hover:border-[#4F7FFF]/50"
-                          : "bg-gray-50 border-gray-200 text-gray-600 hover:border-[#4F7FFF]/50"
-                      }
-                      ${social.color}
-                    `}
-                  >
-                    {social.icon}
-                    <span className="font-medium">
-                      {t(`contact.social.${social.name.toLowerCase()}`)}
-                    </span>
-                  </motion.a>
-                )}
-              </div>
+              <motion.a
+                key={social.name}
+                href={social.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ x: isRTL ? -10 : 10, scale: 1.05 }}
+                className={`
+                  flex items-center gap-4 p-4 rounded-lg border transition-all
+                  ${
+                    isDark
+                      ? "bg-[#16181C] border-white/10 text-gray-400 hover:border-[#4F7FFF]/50"
+                      : "bg-gray-50 border-gray-200 text-gray-600 hover:border-[#4F7FFF]/50"
+                  }
+                  ${social.color}
+                `}
+              >
+                {social.icon}
+                <span className="font-medium">
+                  {t(`contact.social.${social.name.toLowerCase()}`)}
+                </span>
+              </motion.a>
             ))}
           </div>
         </motion.div>

@@ -12,10 +12,29 @@ export const Experience = () => {
     {
       title: t("experience.harmonically.title"),
       company: t("experience.harmonically.company"),
+      location: t("experience.harmonically.location"),
       period: t("experience.harmonically.period"),
       description: t("experience.harmonically.description"),
       link: "https://harmonicallylabs.com/en",
       current: true,
+    },
+    {
+      title: t("experience.united.title"),
+      company: t("experience.united.company"),
+      location: t("experience.united.location"),
+      period: t("experience.united.period"),
+      description: t("experience.united.description"),
+      link: "#",
+      current: false,
+    },
+    {
+      title: t("experience.oscar.title"),
+      company: t("experience.oscar.company"),
+      location: t("experience.oscar.location"),
+      period: t("experience.oscar.period"),
+      description: t("experience.oscar.description"),
+      link: "#",
+      current: false,
     },
   ];
 
@@ -91,17 +110,26 @@ export const Experience = () => {
                       >
                         {exp.title}
                       </h3>
-                      <a
-                        href={exp.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`
-                          text-lg font-semibold mb-2 hover:text-[#4F7FFF] transition-colors
-                          ${isDark ? "text-[#4F7FFF]" : "text-[#4F7FFF]"}
-                        `}
-                      >
-                        {exp.company} ↗
-                      </a>
+                      <div className="mb-2">
+                        <div
+                          className={`
+                            text-lg font-semibold
+                            ${isDark ? "text-[#4F7FFF]" : "text-[#4F7FFF]"}
+                          `}
+                        >
+                          {exp.company}
+                        </div>
+                        {exp.location && (
+                          <div
+                            className={`
+                              text-sm
+                              ${isDark ? "text-gray-400" : "text-gray-500"}
+                            `}
+                          >
+                            {exp.location}
+                          </div>
+                        )}
+                      </div>
                     </div>
                     {exp.current && (
                       <span

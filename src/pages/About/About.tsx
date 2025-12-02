@@ -1,12 +1,16 @@
+import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from '../../contexts/ThemeContext';
+import { TechIcons } from '../../components/molecules/TechStack';
+import { gsap } from 'gsap';
 
 export const About = () => {
   const { t, i18n } = useTranslation();
   const { theme } = useTheme();
   const isDark = theme === 'dark';
   const isRTL = i18n.language === 'ar';
+  const techStackRef = useRef<HTMLDivElement>(null);
 
   const skills = [
     { name: 'React', level: 90 },
@@ -15,6 +19,65 @@ export const About = () => {
     { name: 'Python', level: 75 },
     { name: 'UI/UX Design', level: 85 },
     { name: 'System Architecture', level: 80 },
+  ];
+
+  // GSAP animation for tech stack
+  useEffect(() => {
+    if (techStackRef.current) {
+      const techItems = techStackRef.current.querySelectorAll('.tech-item');
+      
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              gsap.fromTo(entry.target as HTMLElement, 
+                {
+                  opacity: 0,
+                  scale: 0.8,
+                  y: 50,
+                },
+                {
+                  opacity: 1,
+                  scale: 1,
+                  y: 0,
+                  duration: 0.6,
+                  ease: 'back.out(1.7)',
+                }
+              );
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
+
+      techItems.forEach((item, index) => {
+        gsap.set(item, { opacity: 0 });
+        observer.observe(item);
+      });
+
+      return () => {
+        techItems.forEach((item) => observer.unobserve(item));
+      };
+    }
+  }, []);
+
+  const techStack = [
+    { name: 'React', icon: TechIcons.React },
+    { name: 'TypeScript', icon: TechIcons.TypeScript },
+    { name: 'JavaScript', icon: TechIcons.JavaScript },
+    { name: 'Python', icon: TechIcons.Python },
+    { name: 'HTML5', icon: TechIcons.HTML5 },
+    { name: 'CSS3', icon: TechIcons.CSS3 },
+    { name: 'TailwindCSS', icon: TechIcons.TailwindCSS },
+    { name: 'React Native', icon: TechIcons['React Native'] },
+    { name: 'Node.js', icon: TechIcons['Node.js'] },
+    { name: 'SQL', icon: TechIcons.SQL },
+    { name: 'Java', icon: TechIcons.Java },
+    { name: 'Android Studio', icon: TechIcons['Android Studio'] },
+    { name: 'GSAP', icon: TechIcons.GSAP },
+    { name: 'Framer Motion', icon: TechIcons['Framer Motion'] },
+    { name: 'Three.js', icon: TechIcons['Three.js'] },
   ];
 
   return (
@@ -124,7 +187,7 @@ export const About = () => {
                     text-3xl font-bold mb-2
                     ${isDark ? 'text-[#4F7FFF]' : 'text-[#4F7FFF]'}
                   `}>
-                    50+
+                    20+
                   </div>
                   <div className={`
                     text-sm
@@ -138,7 +201,7 @@ export const About = () => {
                     text-3xl font-bold mb-2
                     ${isDark ? 'text-[#FF6B35]' : 'text-[#FF6B35]'}
                   `}>
-                    5+
+                    3
                   </div>
                   <div className={`
                     text-sm
@@ -159,6 +222,7 @@ export const About = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.3 }}
           className="mt-16"
+          ref={techStackRef}
         >
           <h3 className={`
             text-2xl font-bold mb-8 text-center
@@ -166,23 +230,31 @@ export const About = () => {
           `}>
             Tech Stack
           </h3>
-          <div className="flex flex-wrap justify-center gap-8">
-            {['React', 'TypeScript', 'Node.js', 'Python', 'TailwindCSS', 'Framer Motion', 'GSAP', 'Three.js'].map((tech) => (
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-4">
+            {techStack.map((tech) => (
               <motion.div
-                key={tech}
+                key={tech.name}
+                className="tech-item"
                 whileHover={{ scale: 1.1, y: -5 }}
-                className={`
-                  px-6 py-3 rounded-lg
-                  ${isDark ? 'bg-[#16181C] border border-white/10' : 'bg-gray-50 border border-gray-200'}
-                  hover:border-[#4F7FFF]/50 transition-all
-                `}
+                whileTap={{ scale: 0.95 }}
               >
-                <span className={`
-                  font-medium
-                  ${isDark ? 'text-gray-300' : 'text-gray-700'}
+                <div className={`
+                  p-4 rounded-xl flex flex-col items-center gap-2 transition-all cursor-pointer
+                  ${isDark 
+                    ? 'bg-[#16181C] border border-white/10 hover:border-[#4F7FFF]/50' 
+                    : 'bg-gray-50 border border-gray-200 hover:border-[#4F7FFF]/50'
+                  }
                 `}>
-                  {tech}
-                </span>
+                  <div className="w-10 h-10 flex items-center justify-center">
+                    {tech.icon}
+                  </div>
+                  <span className={`
+                    text-xs font-medium text-center
+                    ${isDark ? 'text-gray-300' : 'text-gray-700'}
+                  `}>
+                    {tech.name}
+                  </span>
+                </div>
               </motion.div>
             ))}
           </div>

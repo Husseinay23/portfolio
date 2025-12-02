@@ -11,7 +11,8 @@
     "greeting": "Bonjour, je suis",
     "name": "Hussein Ayoub",
     "title": "Développeur Full-Stack & Résolveur de Problèmes Créatif",
-    "cta": "Contactez-moi"
+    "cta": "Contactez-moi",
+    "downloadCV": "Télécharger le CV"
   },
   "about": {
     "title": "À propos de moi",
@@ -72,11 +73,19 @@
   "experience": {
     "title": "Expérience",
     "current": "Actuel",
-    "harmonically": {
-      "title": "Développeur Full-Stack",
-      "company": "Harmonically Labs",
-      "period": "2024 - Présent",
-      "description": "Développement et maintenance d'applications web, travail avec des technologies modernes pour fournir des solutions numériques de haute qualité pour les clients d'entreprise."
+    "united": {
+      "title": "Spécialiste Centre des Opérations Réseau (NOC)",
+      "company": "United.CD",
+      "location": "Kinshasa, RD Congo",
+      "period": "Octobre 2024 - Janvier 2025",
+      "description": "Dépannage des problèmes réseau, détection et réponse aux alertes, configuration et déploiement d'équipements réseau, et support des services d'accès à distance."
+    },
+    "oscar": {
+      "title": "Gestionnaire des Opérations Commerciales",
+      "company": "Oscar Print",
+      "location": "Kinshasa, RD Congo",
+      "period": "Juin 2018 - Août 2018",
+      "description": "Géré et participé avec une équipe dans une imprimerie et un cybercafé. Résolu les problèmes d'optimisation, appris divers outils d'impression, et participé à la tarification et aux négociations avec les clients."
     }
   },
   "theme": {

@@ -11,7 +11,8 @@
     "greeting": "Hello, I am",
     "name": "Hussein Ayoub",
     "title": "Full-Stack Developer & Creative Problem Solver",
-    "cta": "Get in Touch"
+    "cta": "Get in Touch",
+    "downloadCV": "Download CV"
   },
   "about": {
     "title": "About Me",
@@ -29,8 +30,23 @@
     "harmonically": {
       "title": "Full-Stack Developer",
       "company": "Harmonically Labs",
+      "location": "Remote",
       "period": "2024 - Present",
       "description": "Developing and maintaining web applications, working with modern technologies to deliver high-quality digital solutions for enterprise clients."
+    },
+    "united": {
+      "title": "Network Operations Center (NOC) Specialist",
+      "company": "United.CD",
+      "location": "Kinshasa, DRC Congo",
+      "period": "October 2024 - January 2025",
+      "description": "Troubleshoot network issues, detect and respond to alerts, configure and deploy network equipment, and support remote access services."
+    },
+    "oscar": {
+      "title": "Business Operations Manager",
+      "company": "Oscar Print",
+      "location": "Kinshasa, DRC Congo",
+      "period": "June 2018 - August 2018",
+      "description": "Managed and participated with a team in a printing house and cybercafé. Fixed streamlining issues, learned various printing tools, and participated in pricing and customer negotiations."
     }
   },
   "projects": {

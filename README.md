@@ -7,7 +7,6 @@ A premium portfolio website built with modern web technologies.
 - **React 19** + **TypeScript**
 - **Vite** - Build tool and dev server
 - **TailwindCSS** - Utility-first CSS framework
-- **Framer Motion** - Animation library
 - **React-i18next** - Internationalization (EN, FR, AR)
 - **GSAP** - Advanced animations
 - **Three.js** - 3D graphics (optional)

@@ -1,0 +1,1 @@
+export { TechIcons } from './TechStackIcons';
